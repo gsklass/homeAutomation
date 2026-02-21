@@ -1,0 +1,36 @@
+# ============================================================
+# Bali PowerView Blind Automation - Configuration
+# ============================================================
+# 1. Run:  python3 discover.py     to find your hub IP and shade IDs
+# 2. Fill in this file, then run:  sudo ./setup.sh
+# ============================================================
+
+hub:
+  # Leave null to auto-discover on the network, or set explicitly:
+  # ip: "192.168.1.100"
+  ip: null
+
+location:
+  # City name used to calculate sunrise/sunset.
+  # If your city isn't found, comment out 'city' and use lat/lon/timezone instead.
+  city: "Chicago"         # <-- replace with your city
+
+  # Manual override (uncomment if city lookup fails):
+  # latitude: 41.8781
+  # longitude: -87.6298
+  # timezone: "America/Chicago"
+
+# Shade IDs to OPEN at sunrise.
+# All other shades are left alone at sunrise (controlled by their remotes).
+# Run discover.py to get the IDs for each shade by name.
+sunrise_shades:
+  []
+  # Example:
+  # - 12345   # Living Room South
+  # - 67890   # Kitchen East
+
+# Time offsets in minutes relative to astronomical sunrise/sunset.
+# Positive = after the event, Negative = before.
+offsets:
+  sunrise: 0    # 0 = exactly at sunrise
+  sunset: -15   # -15 = close blinds 15 minutes BEFORE sunset (recommended)
