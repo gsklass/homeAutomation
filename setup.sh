@@ -7,6 +7,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SERVICE_NAME="blinds-automation"
 SERVICE_FILE="/etc/systemd/system/${SERVICE_NAME}.service"
 PYTHON="$(command -v python3)"
+VENV="$SCRIPT_DIR/.venv"
+VENV_PYTHON="$VENV/bin/python"
 CURRENT_USER="${SUDO_USER:-$USER}"
 
 echo "=== Bali Blinds Automation Setup ==="
@@ -15,11 +17,12 @@ echo "Running as  : $CURRENT_USER"
 echo
 
 # ---------------------------------------------------------------------------
-# 1. Install Python dependencies
+# 1. Create venv and install Python dependencies
 # ---------------------------------------------------------------------------
-echo "[1/3] Installing Python dependencies…"
-"$PYTHON" -m pip install --quiet -r "$SCRIPT_DIR/requirements.txt"
-echo "      Done."
+echo "[1/3] Setting up Python virtual environment and dependencies…"
+"$PYTHON" -m venv "$VENV"
+"$VENV_PYTHON" -m pip install --quiet -r "$SCRIPT_DIR/requirements.txt"
+echo "      Done.  (venv: $VENV)"
 
 # ---------------------------------------------------------------------------
 # 2. Write systemd service unit
@@ -36,7 +39,7 @@ Wants=network-online.target
 Type=simple
 User=$CURRENT_USER
 WorkingDirectory=$SCRIPT_DIR
-ExecStart=$PYTHON $SCRIPT_DIR/blinds_control.py
+ExecStart=$VENV_PYTHON $SCRIPT_DIR/blinds_control.py
 Restart=on-failure
 RestartSec=30
 # Give the network time to come up after boot before first attempt

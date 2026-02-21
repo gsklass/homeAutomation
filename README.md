@@ -17,13 +17,16 @@ Automatically controls Bali PowerView blinds based on sunrise and sunset times.
 ### 1. Install dependencies
 
 ```bash
-pip3 install -r requirements.txt
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
 ```
 
 ### 2. Discover your hub and shade IDs
 
 ```bash
-python3 discover.py
+.venv/bin/python discover.py
+# or if you know the hub IP already:
+.venv/bin/python discover.py --ip 192.168.1.100
 ```
 
 This scans your local network, finds the PowerView hub, and prints all shade names and IDs.
@@ -49,7 +52,7 @@ offsets:
 ### 4. Test manually
 
 ```bash
-python3 blinds_control.py   # runs the daemon; Ctrl-C to stop
+.venv/bin/python blinds_control.py   # runs the daemon; Ctrl-C to stop
 ```
 
 ### 5. Install as a systemd service
