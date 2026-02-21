@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 260px;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      padding: 14px 16px 16px;
+      background: #fff;
+      color: #1a1a1a;
+    }
+    h2 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .badge {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 500;
+      padding: 2px 7px;
+      border-radius: 99px;
+      background: #d1fae5;
+      color: #065f46;
+    }
+    .badge.disabled { background: #fee2e2; color: #991b1b; }
+
+    .status-card {
+      background: #f8faff;
+      border: 1px solid #e0e7ff;
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+    }
+    .event-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3px 0;
+    }
+    .event-label { color: #555; }
+    .event-time  { font-weight: 600; color: #1a1a1a; }
+    .divider { border: none; border-top: 1px solid #e5e7eb; margin: 6px 0; }
+    .last-action { color: #888; font-size: 11px; }
+
+    .unconfigured { color: #b91c1c; font-size: 12px; line-height: 1.4; }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    button {
+      padding: 8px 6px;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      transition: opacity .15s;
+    }
+    button:disabled { opacity: 0.5; cursor: default; }
+    .btn-close  { background: #1e293b; color: #fff; }
+    .btn-open   { background: #fbbf24; color: #1a1a1a; }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    a { color: #4f6ef7; text-decoration: none; font-size: 12px; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h2>Bali Blinds <span class="badge" id="badge">Active</span></h2>
+
+  <div class="status-card" id="statusCard">Loading…</div>
+
+  <div class="buttons">
+    <button class="btn-close" id="btnCloseAll">Close All Now</button>
+    <button class="btn-open"  id="btnOpenSunrise">Open Sunrise</button>
+  </div>
+
+  <div class="footer">
+    <a href="#" id="settingsLink">Settings</a>
+    <a href="#" id="rescheduleLink">Reschedule</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

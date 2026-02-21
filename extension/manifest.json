@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Bali Blinds Automation",
+  "version": "1.0.0",
+  "description": "Close all blinds at sunset; open selected blinds at sunrise. Uses your PowerView hub's local API.",
+
+  "permissions": ["alarms", "storage"],
+  "host_permissions": ["http://*/*"],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Bali Blinds"
+  },
+
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  }
+}
